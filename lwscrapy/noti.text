@@ -1,0 +1,165 @@
+
+**********************************创建scrapy项目：**********************************
+scrapy startproject projectname
+
+**********************************结构：**********************************
+1、spiders文件夹：爬虫文件主目录
+2、init.py：将改文件夹变为一个python模块
+3、items.py：定义所需要爬虫的项目
+4、middlewares.py：爬虫中间件
+5、pipelines.py：管道文件
+6、settings.py：设置文件
+
+
+用scrapy.Spider类创建一个子类来建立一个Spider，其下有三个强制的属性 和 一个方法。
+
+name = “”
+爬虫的唯一识别名称
+
+allow_domains = []
+搜索的域名范围
+规定爬虫只爬取这个域名下的网页，不存在的URL会被忽略。
+
+start_urls = ()
+爬取起始URL
+爬虫从这里开始抓取数据，所以，第一次下载的数据将会从这些urls开始。其他子URL将会从这些元祖URL中继承性生成。
+
+parse(self, response)
+解析的方法
+URL传回Response对象作为唯一参数，用来
+
+解析返回的网页数据(response.body)
+提取结构化数据(生成item)
+生成需要下一页的URL请求。
+
+
+
+**********************************运行方式：**********************************
+scrapy crawl name(自定义的识别名称)
+
+
+
+**********************************保存数据**********************************
+
+-o 输出指定格式的文件，命令如下：
+
+json 格式
+scrapy crawl Medicaldata -o drug.json
+
+json lines格式，默认为Unicode编码
+scrapy crawl Medicaldata -o drug.json
+
+csv 逗号表达式，可用Excel打开
+scrapy crawl Medicaldata -o drug.csv
+
+xml格式
+scrapy crawl Medicaldata -o drug.xml
+
+
+解决方案
+在settings.py文件中增加一行，导出时强制为’utf-8’即可转换为中文
+FEED_EXPORT_ENCODING = 'utf-8'
+
+
+
+**********************************log配置：**********************************
+
+Log levels
+Scrapy提供5层logging级别:
+CRITICAL - 严重错误(critical)
+ERROR - 一般错误(regular errors)
+WARNING - 警告信息(warning messages)
+INFO - 一般信息(informational messages)
+DEBUG - 调试信息(debugging messages)
+
+LOG_ENABLED 默认: True，启用logging
+LOG_ENCODING 默认: 'utf-8'，logging使用的编码
+LOG_FILE 默认: None，在当前目录里创建logging输出文件的文件名
+LOG_LEVEL 默认: 'DEBUG'，log的最低级别
+LOG_STDOUT 默认: False 如果为 True，进程所有的标准输出(及错误)将会被重定向到log中。例如，执行 print "hello" ，其将会在Scrapy log中显示。
+
+
+
+**********************************自定义图片下载管道中间件，图片下载**********************************
+
+1、自己在pipelines文件中 重写图片下载管道中间件，
+   并在setting文件中 配置自定义的中间件路径以及图片下载的途径、图片url对应item中的url字段
+2、注意点：图片url在item对应的应该是数组形式
+   不然报错:ValueError: Missing scheme in request url: h,
+   原因是 中间件中获取不到正确的 图片url
+
+
+
+**********************************Itemloader**********************************
+
+ItemLoader是负责数据的收集、处理、填充,item仅仅是承载了数据本身
+数据的收集、处理、填充归功于item loader中两个重要组件:
+    -输入处理input processors
+    -输出处理output processors
+
+ItemLoader 类位于 scrapy.loader ，它可以接收一个 Item 实例来指定要加载的 Item, 然后指定 response 或者 selector 来确定要解析的内容，
+最后提供了 add_css()、 add_xpath() 方法来对通过 css 、 xpath 解析赋值，还有 add_value() 方法来单独进行赋值。
+可以看到无论解析出来的值的数量是多少，ItemLoader 默认都会返回一个 list。在之前的方式中我们都是通过 extract_first() 获取第一个值或者通过 extract() 解析到值后进行遍历的。
+在 ItemLoader 中，为我们提供了 processor 来对数据进行处理。
+
+在 ItemLoader 类中，提供了 default_output_processor 和 default_input_processor 来对数据的输入与输出进行解析，
+如果我们需要只获取解析后的第一个值，可以指定 default_output_processor 为 TakeFirst() 即可，这是 Scrapy 提供的一个解析处理类，
+
+
+
+
+**********************************splash的使用：**********************************
+
+1、splash使用的是Splash HTTP API，所以需要一个Splash Instance,一般采用docker运行splash，所以需要安装docker
+
+sudo apt-get install docker
+
+2、拉取镜像
+
+sudo docker pull scrapinghub/splash
+
+3、在本机的8050和8051端口开启Splash服务
+
+docker run -p 8050:8050 -p 8051:8051 scrapinghub/splash
+docker run -p 8050:8050 scrapinghub/splash
+4、安装scrapy-splash
+
+pip install scrapy-splash
+
+5、配置splash服务（settings.py）
+
+# 配置splash
+
+```
+# Splash服务器地址
+SPLASH_URL = 'http://localhost:8050'
+DOWNLOADER_MIDDLEWARES = {
+'scrapy_splash.SplashCookiesMiddleware': 723,
+'scrapy_splash.SplashMiddleware': 725,
+'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+}
+
+SPIDER_MIDDLEWARES = {
+'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+}
+# 设置去重过滤器
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+# 用来支持cache_args
+HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+
+```
+
+
+
+**********************************在管道中判断 spider：**********************************
+
+1、通过spider
+    if spider.name == 'SpiderXX':
+2.通过item类型
+    if isinstance(item, AAItem):
+
+
+
+使用setting文件中的配置数据
+
+self.setting.get('keyname')
