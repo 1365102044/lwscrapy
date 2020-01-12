@@ -159,7 +159,141 @@ HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
     if isinstance(item, AAItem):
 
 
+**********************************
 
 使用setting文件中的配置数据
 
 self.setting.get('keyname')
+
+
+**********************************
+
+创建spider文件（在 spider 文件路径下，）
+
+scarpy genspider 文件名 ‘url’
+
+
+# 重写 自定义开始请求
+
+start_requests
+自定义URL
+
+post 请求使用： scrapy.FormRequest()
+
+
+
+
+**********************************Downloader Middlewares (下载器中间件)**********************************
+
+下载器中间件是引擎和下戟器之间通信的中间件。在这个中间件中我们可以设置代理、更换请求头等来达到反反爬虫的目的。要写下
+载器中间件，可以在下载器中实现两个方法。-一个是process. request(self,request,spider)，这个方法是在请求发送之前会执行，
+还有一个是process response(self,request,response,spider)，这个方法是数据下载到引擎之前执行。
+process_ request(self,request,spider):
+这个方法是下载器在发送请求之前会执行的。- -般可以在这个里面设置随机代理p等。
+1.参数:
+    。request: 发送请求的request对象。
+    。spider:发送请求的spider对象。
+2.返回值:
+    。返回None:如果返回None, Scrapy将继续处理该request, 执行其他中间件中的相应方法，直到合适的下载器处理函数被调用。
+    。返回Response对象: Scrapy将不会调用任何其他的process request方法，将直接返回这个response对象。已经激活的中
+        间件的process_ response0方法则会在每个response返回时被调用。
+    。返回Request对象:不再使用之前的request对象去下载数据，而是根据现在返回的request对象返回数据。
+    。如果这个方法中抛出了异常,则会调用process_ .exception方法。
+
+process_ response(self,request,response,spider):
+这个是下载器下载的数据到引擎中间会执行的方法。
+1.参数:
+    。request: request对象 。
+    。response:被处理的response对象。
+    。spider: spider对象 。
+2.返回值:
+    。返回Response对象: 会将这个新的response对象传给其他中间件，最终传给爬虫。
+    。返回Request对象:下载器链被切断,返回的request会重新被下载器调度下载。
+    。如果抛出-一个异常,那么调用request的errback方法，如果没有指定这个方法，那么会抛出- -个异常。
+
+
+
+
+httpbin.org/ip
+httpbin.org/user-agent
+
+
+
+********************************scrapy shell 调试工具************************************
+
+在项目路径下，
+$ scrapy shell url
+进入调试， 可以先使用 xpath/css/re 进行尝试获取数据，看看是否正确
+
+
+
+
+
+******************************** CrawlSpider ********************************
+
+我们是自己在解析完整个页面后获取下一页的url,然后重新发送一个请求。 有时候我们想要这样做，只要满足某个条件的url,
+都给我进行爬取。那么这时候我们就可以通过CrawlSpider 来帮我们完成了。CrawlSpider 继承自Spider ，
+只不过是在之前的基础之上增加了新的功能，可以定义爬取的url的规则，以后scrapy碰到满足条件的ur|都进行爬取，而
+不用手动的yield Request。
+
+创建CrawlSpider爬虫:
+   之前创建爬虫的方式是通过scrapy genspider [爬虫名字] [城名]的方式创建的。如果想要创建CrawlSpider 爬虫，那么应该通过以
+    下命令创建:
+    $ scrapy genspider -t crawl [爬虫名字] [域名]
+    # 创建普通爬虫文件
+    $ scrapy genspider crawl [爬虫名字] [域名]
+
+LinkExtractors链接提取器:
+使用LinkExtractors 可以不用程序员自己提取想要的url,然后发送请求。这些工作都可以交给LinkExtractors ,他会在所有爬的页
+面中找到满足规则的url，实现自动的爬取。以下对LinkExtractors 类做- -个简单的介绍:
+
+class scrapy.linkextractors.LinkExtractor(
+    allow = (),
+    deny=()
+    allow_ _domains = ()。
+    deny_ domains = () ，
+    deny_ extensions = None ，
+    restrict_ xpaths = ( )，
+    tags = ('a','area'),
+    attrs = ('href'),
+    canonicalize = True ,
+    unique = True ,
+    process_ value = None
+)
+主要参数讲解:
+    ● allow:允许的url。所有满足这个正则表达式的url都会被提取。
+    ● deny: 禁止的url。所有满足这个正则表达式的url都不会被提取。
+    ● allow_ domains: 允许的域名。只有在这个里面指定的域名的url才会被提取。
+    ● deny_domains:禁止的域名。所有在这个里面指定的域名的url都不会被提取。
+    ● restrict_xpaths:严格的xpath。和allow共同过滤链接。
+
+
+Rule规则类:
+定义爬虫的规则类。以下对这个类做- -个简单的介绍:
+class scrapy.spiders.Rule(
+    link_extractor,
+    callback = None,
+    cb_kwargs = None ,
+    follow = None ,
+    process_links = None,
+    process_request = None,
+)
+主要参数讲解:
+    ● link extractor:一个LinkExtractor 对象，用于定义爬取规则。
+    ● callback:满足这个规则的url,应该要执行哪个回调函数。因为CrawlSpider 使用了parse作为回调函数，因此不要覆
+    盖parse作为回调函数自己的回调函数。
+    ● follow: 指定根据该规则从response中提取的链接是否需要跟进。
+    ● process_ links: 以link extractor中获取到接后会传递给这个函数，用来过滤不需要爬取的链接。
+
+
+### CrawlSpider:
+需要使用~LinkExtractor~和^Rule.这两个东西决定爬虫的具体走向。
+1. allow设置规则的方法:要能够限制在我们想要的url上面。不要跟其他的ur1产生相同
+的正则表达式即可。
+2.什么情况下使用follow: 如果在爬取页面的时候，需要将满足当前条件的url再进行跟
+进，那么就设置为True。否则设置为Fasle.
+3.什么情况下该指定callback: 如果这个ur1对应的页面， 只是为了获取更多的url,并不
+需要里面的数据，那么可以不指定callback。如果想要获取url对应页面中的数据，那么就
+需要指定一个callback。
+
+

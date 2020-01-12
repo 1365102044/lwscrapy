@@ -3,6 +3,7 @@ from scrapy import Spider
 from scrapy_splash import SplashRequest
 import re
 from lwscrapy.items import JingDongDataItemLoader, JingDongDataItem, JdCommentsItem
+from lwscrapy import settings
 
 class JDSpider(Spider):
 
@@ -40,9 +41,16 @@ class JDSpider(Spider):
 
     def start_requests(self):
 
-        url = "https://search.jd.com/Search?keyword=手机&enc=utf-8&wq=shou%27ji&pvid=e7fb5f90acee4b9c9bab98c19545d571"
-
-        yield SplashRequest(url, self.parse, endpoint="execute", args=self.splah_args, headers=self.headers)
+        page = 1
+        # keyword = settings.get('JDspider_KEYWORDS')[0]
+        keyword = '手机'
+        s = 8
+        while page < 10:
+            url = "https://search.jd.com/Search?keyword={}&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&wq=shou%27ji&page={}&s={}&click=0".format(keyword, page, s)
+            print(url)
+            yield SplashRequest(url, self.parse, endpoint="execute", args=self.splah_args, headers=self.headers)
+            s = s + 50
+            page = page + 2
 
 
     def parse(self, response):
@@ -50,7 +58,7 @@ class JDSpider(Spider):
         # print(response.text)
         # print('\n' + '*' * 20)
         # print(type(response.text))
-        pat = re.compile(r'<li class="gl-item" data-sku=[\s\S]*?<i class="goods-icons4 J-picon-tips" data-tips=".*?">')
+        pat = re.compile(r'<li class="gl-item" data-sku=[\s\S]*?<div class="p-icons"')
         items = re.findall(pat, response.text)
         # print(len(items))
         for item in items:
@@ -59,7 +67,7 @@ class JDSpider(Spider):
             title = title_deatilurl.group(1)
             deatilurl = title_deatilurl.group(2)
             price = re.search(r'.*?<em>￥</em><i>(.*?)</i></strong>.*?', item).group(1)
-            commentsnum = re.search(r'[\s\S]*?flagsClk=.*?">(.*?)</a>条评价</strong>', item).group(1)
+            commentsnum = re.search(r'[\s\S]*?">(.*?)</a>条评价</strong>', item).group(1)
 
             # print(sku_id)
             # print(deatilurl)
@@ -67,8 +75,16 @@ class JDSpider(Spider):
             # print(price)
             # print(commentsnum)
             num = 0
-            if '万' in commentsnum:
-                num = int(commentsnum.split('万')[0])*10000
+            try:
+                if '万' in commentsnum:
+                    num = float(commentsnum.split('万')[0]) * 10000
+                elif '+' in commentsnum:
+                    num = float(commentsnum.split('+')[0])
+                else:
+                    num = commentsnum
+            except Exception as e:
+                print('error:'+str(e))
+
             # print(num)
             loader = JingDongDataItemLoader(item=JingDongDataItem())
             loader.add_value('title', title)
@@ -79,18 +95,15 @@ class JDSpider(Spider):
             item = loader.load_item()
             # print(item)
             yield item
-            page = 0
 
+
+            # 获取商品详情页的数据
+            page = 0
             headers = {'Referer': 'https://item.jd.com/{}.html'.format(sku_id),
                        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36'}
             while page < 10:
-
                 url_deatil = 'https://club.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98vv22316&productId={}&score=0&sortType=5&page={}&pageSize=10&isShadowSku=0&fold=1'.format(sku_id,page)
-
-                print(url_deatil)
-
                 yield SplashRequest(url=url_deatil, headers=headers, args=self.splash_args, callback=self.deatilPrase, meta={'skuid': sku_id})
-
                 page = page + 1
 
 

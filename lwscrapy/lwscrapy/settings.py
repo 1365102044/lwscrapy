@@ -25,12 +25,12 @@ USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36
 # ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 1
+CONCURRENT_REQUESTS = 16
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 5 # 访问频率控制（s）
+DOWNLOAD_DELAY = 2 # 访问频率控制（s）
 
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16     #每个域名最多发送请求数量
@@ -51,15 +51,17 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'lwscrapy.middlewares.LwscrapySpiderMiddleware': 543,
-#}
+# 爬虫中间件
+SPIDER_MIDDLEWARES = {
+   'lwscrapy.middlewares.LwscrapySpiderMiddleware': 543,
+}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'lwscrapy.middlewares.LwscrapyDownloaderMiddleware': 543,
-#}
+# 下载中间件
+DOWNLOADER_MIDDLEWARES = {
+   'lwscrapy.middlewares.LwscrapyDownloaderMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
