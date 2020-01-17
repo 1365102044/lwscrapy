@@ -83,7 +83,16 @@ class LwscrapyDownloaderMiddleware(object):
         #   installed downloader middleware will be called
 
         # 随机设置请求头信息
-        request.headers['User-Agent'] = self.get_user_agent()
+        user_agent = self.get_user_agent()
+        if user_agent:
+            print('*********当前user_agent:'+user_agent+'**********')
+            request.headers['User-Agent'] = self.get_user_agent()
+
+        proxy = self.get_random_proxy()
+        if proxy:
+            print('******当前ip:'+proxy+'******')
+            request.meta['proxy'] = proxy
+
         return None
 
     def process_response(self, request, response, spider):
@@ -109,9 +118,10 @@ class LwscrapyDownloaderMiddleware(object):
         spider.logger.info('Spider opened: %s' % spider.name)
 
 
+    # 动态 IP
     def get_random_proxy(self):
         while True:
-            with open('proxy.text', 'r') as f:
+            with open('proxies.text', 'r') as f:
                 proxys = f.readlines()
                 if proxys:
                     break
@@ -122,6 +132,7 @@ class LwscrapyDownloaderMiddleware(object):
         return proxy
 
 
+    # 动态 User_Agent
     def get_user_agent(self):
         USER_AGENT = [
 'Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; Acoo Browser 1.98.744; .NET CLR 3.5.30729)'

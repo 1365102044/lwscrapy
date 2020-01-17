@@ -60,7 +60,7 @@ SPIDER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 # 下载中间件
 DOWNLOADER_MIDDLEWARES = {
-   'lwscrapy.middlewares.LwscrapyDownloaderMiddleware': 543,
+   'lwscrapy.middlewares.LwscrapyDownloaderMiddleware': 542,
 }
 
 # Enable or disable extensions

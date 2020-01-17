@@ -6824,3 +6824,493 @@ AttributeError: 'NoneType' object has no attribute 'group'
 2020-01-10 19:29:36 [scrapy.extensions.logstats] INFO: Crawled 801 pages (at 24 pages/min), scraped 5845 items (at 142 items/min)
 2020-01-10 19:29:43 [scrapy.crawler] INFO: Received SIGINT, shutting down gracefully. Send again to force 
 2020-01-10 19:29:43 [scrapy.core.engine] INFO: Closing spider (shutdown)
+2020-01-17 16:44:41 [scrapy.utils.log] INFO: Scrapy 1.8.0 started (bot: lwscrapy)
+2020-01-17 16:44:41 [scrapy.utils.log] INFO: Versions: lxml 4.4.1.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.4 (v3.7.4:e09359112e, Jul  8 2019, 14:54:52) - [Clang 6.0 (clang-600.0.57)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1d  10 Sep 2019), cryptography 2.8, Platform Darwin-18.7.0-x86_64-i386-64bit
+2020-01-17 16:44:41 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'lwscrapy', 'CLOSESPIDER_PAGECOUNT': 1000, 'DOWNLOAD_DELAY': 2, 'DUPEFILTER_CLASS': 'scrapy_splash.SplashAwareDupeFilter', 'FEED_EXPORT_ENCODING': 'utf-8', 'HTTPCACHE_STORAGE': 'scrapy_splash.SplashAwareFSCacheStorage', 'LOG_FILE': 'medicaldataspider.log', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'lwscrapy.spiders', 'SPIDER_MODULES': ['lwscrapy.spiders'], 'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'}
+2020-01-17 16:44:41 [scrapy.extensions.telnet] INFO: Telnet Password: a89a5f295b7c40ff
+2020-01-17 16:44:41 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.logstats.LogStats']
+2020-01-17 16:44:41 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-01-17 16:44:41 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy_splash.SplashDeduplicateArgsMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-01-17 16:44:41 [scrapy.middleware] INFO: Enabled item pipelines:
+['lwscrapy.pipelines.lwJDPipelines',
+ 'lwscrapy.pipelines.lwTianMaoPipelines',
+ 'lwscrapy.pipelines.LwscrapyPipeline',
+ 'lwscrapy.pipelines.ImagesnamePipelines']
+2020-01-17 16:44:41 [twisted] CRITICAL: Unhandled error in Deferred:
+2020-01-17 16:44:41 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "/Users/lwq/Library/Python/3.7/lib/python/site-packages/twisted/internet/defer.py", line 1418, in _inlineCallbacks
+    result = g.send(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/scrapy/crawler.py", line 87, in crawl
+    start_requests = iter(self.spider.start_requests())
+  File "/Users/lwq/Desktop/Learn/lwscrapy/lwscrapy/lwscrapy/spiders/renren.py", line 28, in start_requests
+    request = scrapy.Request(url=url, callback=self.res_prase)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/scrapy/http/request/__init__.py", line 26, in __init__
+    self._set_url(url)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/scrapy/http/request/__init__.py", line 70, in _set_url
+    raise ValueError('Missing scheme in request url: %s' % self._url)
+ValueError: Missing scheme in request url: httpbin.org/user-agent
+2020-01-17 16:47:09 [scrapy.utils.log] INFO: Scrapy 1.8.0 started (bot: lwscrapy)
+2020-01-17 16:47:09 [scrapy.utils.log] INFO: Versions: lxml 4.4.1.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.4 (v3.7.4:e09359112e, Jul  8 2019, 14:54:52) - [Clang 6.0 (clang-600.0.57)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1d  10 Sep 2019), cryptography 2.8, Platform Darwin-18.7.0-x86_64-i386-64bit
+2020-01-17 16:47:09 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'lwscrapy', 'CLOSESPIDER_PAGECOUNT': 1000, 'DOWNLOAD_DELAY': 2, 'DUPEFILTER_CLASS': 'scrapy_splash.SplashAwareDupeFilter', 'FEED_EXPORT_ENCODING': 'utf-8', 'HTTPCACHE_STORAGE': 'scrapy_splash.SplashAwareFSCacheStorage', 'LOG_FILE': 'medicaldataspider.log', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'lwscrapy.spiders', 'SPIDER_MODULES': ['lwscrapy.spiders'], 'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'}
+2020-01-17 16:47:09 [scrapy.extensions.telnet] INFO: Telnet Password: 56b4150ebd784ed0
+2020-01-17 16:47:09 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.logstats.LogStats']
+2020-01-17 16:47:09 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-01-17 16:47:09 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy_splash.SplashDeduplicateArgsMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-01-17 16:47:09 [scrapy.middleware] INFO: Enabled item pipelines:
+['lwscrapy.pipelines.lwJDPipelines',
+ 'lwscrapy.pipelines.lwTianMaoPipelines',
+ 'lwscrapy.pipelines.LwscrapyPipeline',
+ 'lwscrapy.pipelines.ImagesnamePipelines']
+2020-01-17 16:47:22 [twisted] CRITICAL: Unhandled error in Deferred:
+2020-01-17 16:47:22 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "_pydevd_frame_eval/pydevd_frame_evaluator_darwin_37_64.pyx", line 95, in _pydevd_frame_eval.pydevd_frame_evaluator_darwin_37_64.get_bytecode_while_frame_eval
+KeyError: '/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/encodings/idna.py'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lwq/Library/Python/3.7/lib/python/site-packages/twisted/internet/defer.py", line 1418, in _inlineCallbacks
+    result = g.send(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/scrapy/crawler.py", line 87, in crawl
+    start_requests = iter(self.spider.start_requests())
+  File "/Users/lwq/Desktop/Learn/lwscrapy/lwscrapy/lwscrapy/spiders/renren.py", line 28, in start_requests
+    request = scrapy.Request(url = url, callback=self.res_prase)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/scrapy/http/request/__init__.py", line 26, in __init__
+    self._set_url(url)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/scrapy/http/request/__init__.py", line 70, in _set_url
+    raise ValueError('Missing scheme in request url: %s' % self._url)
+ValueError: Missing scheme in request url: httpbin.org/user-agent
+2020-01-17 16:48:28 [scrapy.utils.log] INFO: Scrapy 1.8.0 started (bot: lwscrapy)
+2020-01-17 16:48:28 [scrapy.utils.log] INFO: Versions: lxml 4.4.1.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.4 (v3.7.4:e09359112e, Jul  8 2019, 14:54:52) - [Clang 6.0 (clang-600.0.57)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1d  10 Sep 2019), cryptography 2.8, Platform Darwin-18.7.0-x86_64-i386-64bit
+2020-01-17 16:48:28 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'lwscrapy', 'CLOSESPIDER_PAGECOUNT': 1000, 'DOWNLOAD_DELAY': 2, 'DUPEFILTER_CLASS': 'scrapy_splash.SplashAwareDupeFilter', 'FEED_EXPORT_ENCODING': 'utf-8', 'HTTPCACHE_STORAGE': 'scrapy_splash.SplashAwareFSCacheStorage', 'LOG_FILE': 'medicaldataspider.log', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'lwscrapy.spiders', 'SPIDER_MODULES': ['lwscrapy.spiders'], 'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'}
+2020-01-17 16:48:28 [scrapy.extensions.telnet] INFO: Telnet Password: e3fa2f46a2fd9e73
+2020-01-17 16:48:29 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.logstats.LogStats']
+2020-01-17 16:48:29 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-01-17 16:48:29 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy_splash.SplashDeduplicateArgsMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-01-17 16:48:29 [scrapy.middleware] INFO: Enabled item pipelines:
+['lwscrapy.pipelines.lwJDPipelines',
+ 'lwscrapy.pipelines.lwTianMaoPipelines',
+ 'lwscrapy.pipelines.LwscrapyPipeline',
+ 'lwscrapy.pipelines.ImagesnamePipelines']
+2020-01-17 16:48:31 [twisted] CRITICAL: Unhandled error in Deferred:
+2020-01-17 16:48:31 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "/Users/lwq/Library/Python/3.7/lib/python/site-packages/twisted/internet/defer.py", line 1418, in _inlineCallbacks
+    result = g.send(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/scrapy/crawler.py", line 87, in crawl
+    start_requests = iter(self.spider.start_requests())
+  File "/Users/lwq/Desktop/Learn/lwscrapy/lwscrapy/lwscrapy/spiders/renren.py", line 28, in start_requests
+    request = scrapy.Request(url = url, callback=self.res_prase)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/scrapy/http/request/__init__.py", line 26, in __init__
+    self._set_url(url)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/scrapy/http/request/__init__.py", line 70, in _set_url
+    raise ValueError('Missing scheme in request url: %s' % self._url)
+ValueError: Missing scheme in request url: httpbin.org/user-agent
+2020-01-17 16:49:12 [scrapy.utils.log] INFO: Scrapy 1.8.0 started (bot: lwscrapy)
+2020-01-17 16:49:12 [scrapy.utils.log] INFO: Versions: lxml 4.4.1.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.4 (v3.7.4:e09359112e, Jul  8 2019, 14:54:52) - [Clang 6.0 (clang-600.0.57)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1d  10 Sep 2019), cryptography 2.8, Platform Darwin-18.7.0-x86_64-i386-64bit
+2020-01-17 16:49:12 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'lwscrapy', 'CLOSESPIDER_PAGECOUNT': 1000, 'DOWNLOAD_DELAY': 2, 'DUPEFILTER_CLASS': 'scrapy_splash.SplashAwareDupeFilter', 'FEED_EXPORT_ENCODING': 'utf-8', 'HTTPCACHE_STORAGE': 'scrapy_splash.SplashAwareFSCacheStorage', 'LOG_FILE': 'medicaldataspider.log', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'lwscrapy.spiders', 'SPIDER_MODULES': ['lwscrapy.spiders'], 'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'}
+2020-01-17 16:49:12 [scrapy.extensions.telnet] INFO: Telnet Password: 487f47cbaeb10a0e
+2020-01-17 16:49:12 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.logstats.LogStats']
+2020-01-17 16:49:12 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-01-17 16:49:12 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy_splash.SplashDeduplicateArgsMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-01-17 16:49:12 [scrapy.middleware] INFO: Enabled item pipelines:
+['lwscrapy.pipelines.lwJDPipelines',
+ 'lwscrapy.pipelines.lwTianMaoPipelines',
+ 'lwscrapy.pipelines.LwscrapyPipeline',
+ 'lwscrapy.pipelines.ImagesnamePipelines']
+2020-01-17 16:49:12 [twisted] CRITICAL: Unhandled error in Deferred:
+2020-01-17 16:49:12 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "/Users/lwq/Library/Python/3.7/lib/python/site-packages/twisted/internet/defer.py", line 1418, in _inlineCallbacks
+    result = g.send(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/scrapy/crawler.py", line 87, in crawl
+    start_requests = iter(self.spider.start_requests())
+TypeError: 'NoneType' object is not iterable
+2020-01-17 16:49:58 [scrapy.utils.log] INFO: Scrapy 1.8.0 started (bot: lwscrapy)
+2020-01-17 16:49:58 [scrapy.utils.log] INFO: Versions: lxml 4.4.1.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.4 (v3.7.4:e09359112e, Jul  8 2019, 14:54:52) - [Clang 6.0 (clang-600.0.57)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1d  10 Sep 2019), cryptography 2.8, Platform Darwin-18.7.0-x86_64-i386-64bit
+2020-01-17 16:49:58 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'lwscrapy', 'CLOSESPIDER_PAGECOUNT': 1000, 'DOWNLOAD_DELAY': 2, 'DUPEFILTER_CLASS': 'scrapy_splash.SplashAwareDupeFilter', 'FEED_EXPORT_ENCODING': 'utf-8', 'HTTPCACHE_STORAGE': 'scrapy_splash.SplashAwareFSCacheStorage', 'LOG_FILE': 'medicaldataspider.log', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'lwscrapy.spiders', 'SPIDER_MODULES': ['lwscrapy.spiders'], 'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'}
+2020-01-17 16:49:58 [scrapy.extensions.telnet] INFO: Telnet Password: a692a20e43f5cb16
+2020-01-17 16:49:58 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.logstats.LogStats']
+2020-01-17 16:49:58 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-01-17 16:49:58 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy_splash.SplashDeduplicateArgsMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-01-17 16:49:58 [scrapy.middleware] INFO: Enabled item pipelines:
+['lwscrapy.pipelines.lwJDPipelines',
+ 'lwscrapy.pipelines.lwTianMaoPipelines',
+ 'lwscrapy.pipelines.LwscrapyPipeline',
+ 'lwscrapy.pipelines.ImagesnamePipelines']
+2020-01-17 16:49:58 [twisted] CRITICAL: Unhandled error in Deferred:
+2020-01-17 16:49:58 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "/Users/lwq/Library/Python/3.7/lib/python/site-packages/twisted/internet/defer.py", line 1418, in _inlineCallbacks
+    result = g.send(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/scrapy/crawler.py", line 87, in crawl
+    start_requests = iter(self.spider.start_requests())
+TypeError: 'NoneType' object is not iterable
+2020-01-17 16:51:38 [scrapy.utils.log] INFO: Scrapy 1.8.0 started (bot: lwscrapy)
+2020-01-17 16:51:38 [scrapy.utils.log] INFO: Versions: lxml 4.4.1.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.4 (v3.7.4:e09359112e, Jul  8 2019, 14:54:52) - [Clang 6.0 (clang-600.0.57)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1d  10 Sep 2019), cryptography 2.8, Platform Darwin-18.7.0-x86_64-i386-64bit
+2020-01-17 16:51:38 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'lwscrapy', 'CLOSESPIDER_PAGECOUNT': 1000, 'DOWNLOAD_DELAY': 2, 'DUPEFILTER_CLASS': 'scrapy_splash.SplashAwareDupeFilter', 'FEED_EXPORT_ENCODING': 'utf-8', 'HTTPCACHE_STORAGE': 'scrapy_splash.SplashAwareFSCacheStorage', 'LOG_FILE': 'medicaldataspider.log', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'lwscrapy.spiders', 'SPIDER_MODULES': ['lwscrapy.spiders'], 'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'}
+2020-01-17 16:51:38 [scrapy.extensions.telnet] INFO: Telnet Password: 0f6c39b59f1f0995
+2020-01-17 16:51:38 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.logstats.LogStats']
+2020-01-17 16:51:38 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-01-17 16:51:38 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy_splash.SplashDeduplicateArgsMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-01-17 16:51:38 [scrapy.middleware] INFO: Enabled item pipelines:
+['lwscrapy.pipelines.lwJDPipelines',
+ 'lwscrapy.pipelines.lwTianMaoPipelines',
+ 'lwscrapy.pipelines.LwscrapyPipeline',
+ 'lwscrapy.pipelines.ImagesnamePipelines']
+2020-01-17 16:51:38 [scrapy.core.engine] INFO: Spider opened
+2020-01-17 16:51:38 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-01-17 16:51:38 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-01-17 16:51:42 [scrapy.core.engine] INFO: Closing spider (finished)
+2020-01-17 16:51:42 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 1781,
+ 'downloader/request_count': 3,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/request_method_count/POST': 1,
+ 'downloader/response_bytes': 15479,
+ 'downloader/response_count': 3,
+ 'downloader/response_status_count/200': 1,
+ 'downloader/response_status_count/302': 2,
+ 'elapsed_time_seconds': 3.704529,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2020, 1, 17, 8, 51, 42, 312570),
+ 'log_count/INFO': 10,
+ 'memusage/max': 81866752,
+ 'memusage/startup': 81866752,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 3,
+ 'scheduler/dequeued/memory': 3,
+ 'scheduler/enqueued': 3,
+ 'scheduler/enqueued/memory': 3,
+ 'start_time': datetime.datetime(2020, 1, 17, 8, 51, 38, 608041)}
+2020-01-17 16:51:42 [scrapy.core.engine] INFO: Spider closed (finished)
+2020-01-17 16:52:25 [scrapy.utils.log] INFO: Scrapy 1.8.0 started (bot: lwscrapy)
+2020-01-17 16:52:25 [scrapy.utils.log] INFO: Versions: lxml 4.4.1.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.4 (v3.7.4:e09359112e, Jul  8 2019, 14:54:52) - [Clang 6.0 (clang-600.0.57)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1d  10 Sep 2019), cryptography 2.8, Platform Darwin-18.7.0-x86_64-i386-64bit
+2020-01-17 16:52:25 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'lwscrapy', 'CLOSESPIDER_PAGECOUNT': 1000, 'DOWNLOAD_DELAY': 2, 'DUPEFILTER_CLASS': 'scrapy_splash.SplashAwareDupeFilter', 'FEED_EXPORT_ENCODING': 'utf-8', 'HTTPCACHE_STORAGE': 'scrapy_splash.SplashAwareFSCacheStorage', 'LOG_FILE': 'medicaldataspider.log', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'lwscrapy.spiders', 'SPIDER_MODULES': ['lwscrapy.spiders'], 'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'}
+2020-01-17 16:52:25 [scrapy.extensions.telnet] INFO: Telnet Password: e6ceed1662beef80
+2020-01-17 16:52:25 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.logstats.LogStats']
+2020-01-17 16:52:25 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-01-17 16:52:25 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy_splash.SplashDeduplicateArgsMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-01-17 16:52:25 [scrapy.middleware] INFO: Enabled item pipelines:
+['lwscrapy.pipelines.lwJDPipelines',
+ 'lwscrapy.pipelines.lwTianMaoPipelines',
+ 'lwscrapy.pipelines.LwscrapyPipeline',
+ 'lwscrapy.pipelines.ImagesnamePipelines']
+2020-01-17 16:52:25 [scrapy.core.engine] INFO: Spider opened
+2020-01-17 16:52:25 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-01-17 16:52:25 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-01-17 16:52:30 [scrapy.core.engine] INFO: Closing spider (finished)
+2020-01-17 16:52:30 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 1779,
+ 'downloader/request_count': 3,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/request_method_count/POST': 1,
+ 'downloader/response_bytes': 15467,
+ 'downloader/response_count': 3,
+ 'downloader/response_status_count/200': 1,
+ 'downloader/response_status_count/302': 2,
+ 'elapsed_time_seconds': 4.741922,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2020, 1, 17, 8, 52, 30, 198868),
+ 'log_count/INFO': 10,
+ 'memusage/max': 81895424,
+ 'memusage/startup': 81895424,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 3,
+ 'scheduler/dequeued/memory': 3,
+ 'scheduler/enqueued': 3,
+ 'scheduler/enqueued/memory': 3,
+ 'start_time': datetime.datetime(2020, 1, 17, 8, 52, 25, 456946)}
+2020-01-17 16:52:30 [scrapy.core.engine] INFO: Spider closed (finished)
+2020-01-17 16:55:43 [scrapy.utils.log] INFO: Scrapy 1.8.0 started (bot: lwscrapy)
+2020-01-17 16:55:43 [scrapy.utils.log] INFO: Versions: lxml 4.4.1.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.4 (v3.7.4:e09359112e, Jul  8 2019, 14:54:52) - [Clang 6.0 (clang-600.0.57)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1d  10 Sep 2019), cryptography 2.8, Platform Darwin-18.7.0-x86_64-i386-64bit
+2020-01-17 16:55:43 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'lwscrapy', 'CLOSESPIDER_PAGECOUNT': 1000, 'DOWNLOAD_DELAY': 2, 'DUPEFILTER_CLASS': 'scrapy_splash.SplashAwareDupeFilter', 'FEED_EXPORT_ENCODING': 'utf-8', 'HTTPCACHE_STORAGE': 'scrapy_splash.SplashAwareFSCacheStorage', 'LOG_FILE': 'medicaldataspider.log', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'lwscrapy.spiders', 'SPIDER_MODULES': ['lwscrapy.spiders'], 'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'}
+2020-01-17 16:55:43 [scrapy.extensions.telnet] INFO: Telnet Password: f6b5560e3f47a284
+2020-01-17 16:55:43 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.logstats.LogStats']
+2020-01-17 16:55:43 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-01-17 16:55:43 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy_splash.SplashDeduplicateArgsMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-01-17 16:55:43 [scrapy.middleware] INFO: Enabled item pipelines:
+['lwscrapy.pipelines.lwJDPipelines',
+ 'lwscrapy.pipelines.lwTianMaoPipelines',
+ 'lwscrapy.pipelines.LwscrapyPipeline',
+ 'lwscrapy.pipelines.ImagesnamePipelines']
+2020-01-17 16:55:43 [scrapy.core.engine] INFO: Spider opened
+2020-01-17 16:55:43 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-01-17 16:55:43 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-01-17 16:55:49 [scrapy.core.engine] INFO: Closing spider (finished)
+2020-01-17 16:55:49 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 725,
+ 'downloader/request_count': 2,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/response_bytes': 41809,
+ 'downloader/response_count': 2,
+ 'downloader/response_status_count/200': 1,
+ 'downloader/response_status_count/302': 1,
+ 'elapsed_time_seconds': 5.814902,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2020, 1, 17, 8, 55, 49, 530258),
+ 'log_count/INFO': 10,
+ 'memusage/max': 81879040,
+ 'memusage/startup': 81874944,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 2,
+ 'scheduler/dequeued/memory': 2,
+ 'scheduler/enqueued': 2,
+ 'scheduler/enqueued/memory': 2,
+ 'start_time': datetime.datetime(2020, 1, 17, 8, 55, 43, 715356)}
+2020-01-17 16:55:49 [scrapy.core.engine] INFO: Spider closed (finished)
+2020-01-17 16:59:23 [scrapy.utils.log] INFO: Scrapy 1.8.0 started (bot: lwscrapy)
+2020-01-17 16:59:23 [scrapy.utils.log] INFO: Versions: lxml 4.4.1.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.4 (v3.7.4:e09359112e, Jul  8 2019, 14:54:52) - [Clang 6.0 (clang-600.0.57)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1d  10 Sep 2019), cryptography 2.8, Platform Darwin-18.7.0-x86_64-i386-64bit
+2020-01-17 16:59:23 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'lwscrapy', 'CLOSESPIDER_PAGECOUNT': 1000, 'DOWNLOAD_DELAY': 2, 'DUPEFILTER_CLASS': 'scrapy_splash.SplashAwareDupeFilter', 'FEED_EXPORT_ENCODING': 'utf-8', 'HTTPCACHE_STORAGE': 'scrapy_splash.SplashAwareFSCacheStorage', 'LOG_FILE': 'medicaldataspider.log', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'lwscrapy.spiders', 'SPIDER_MODULES': ['lwscrapy.spiders'], 'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'}
+2020-01-17 16:59:23 [scrapy.extensions.telnet] INFO: Telnet Password: 626d82a97b02bb40
+2020-01-17 16:59:23 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.logstats.LogStats']
+2020-01-17 16:59:23 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy_splash.SplashCookiesMiddleware',
+ 'scrapy_splash.SplashMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-01-17 16:59:23 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy_splash.SplashDeduplicateArgsMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-01-17 16:59:24 [scrapy.middleware] INFO: Enabled item pipelines:
+['lwscrapy.pipelines.lwJDPipelines',
+ 'lwscrapy.pipelines.lwTianMaoPipelines',
+ 'lwscrapy.pipelines.LwscrapyPipeline',
+ 'lwscrapy.pipelines.ImagesnamePipelines']
+2020-01-17 16:59:24 [scrapy.core.engine] INFO: Spider opened
+2020-01-17 16:59:24 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-01-17 16:59:24 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-01-17 16:59:30 [scrapy.core.engine] INFO: Closing spider (finished)
+2020-01-17 16:59:30 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 725,
+ 'downloader/request_count': 2,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/response_bytes': 41988,
+ 'downloader/response_count': 2,
+ 'downloader/response_status_count/200': 1,
+ 'downloader/response_status_count/302': 1,
+ 'elapsed_time_seconds': 6.03876,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2020, 1, 17, 8, 59, 30, 51033),
+ 'log_count/INFO': 10,
+ 'memusage/max': 81936384,
+ 'memusage/startup': 81932288,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 2,
+ 'scheduler/dequeued/memory': 2,
+ 'scheduler/enqueued': 2,
+ 'scheduler/enqueued/memory': 2,
+ 'start_time': datetime.datetime(2020, 1, 17, 8, 59, 24, 12273)}
+2020-01-17 16:59:30 [scrapy.core.engine] INFO: Spider closed (finished)

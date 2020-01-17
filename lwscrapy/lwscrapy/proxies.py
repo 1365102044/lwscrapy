@@ -86,7 +86,7 @@ class Proxies(object):
                 if requests.get('http://www.baidu.com', proxies=proxies, timeout=2).status_code == 200:
                     print ('success %s' % proxy)
                     new_queue.put(proxy)
-              except:
+            except:
                 print ('fail %s' % proxy)
 
 

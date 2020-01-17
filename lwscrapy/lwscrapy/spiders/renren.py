@@ -4,11 +4,11 @@ import scrapy
 
 class RenrenSpider(scrapy.Spider):
     name = 'renren'
-    allowed_domains = ['renren.com', 'httpbin.org/user-agent']
+    allowed_domains = ['renren.com', 'httpbin.org/user-agent', 'www.baidu.com']
     start_urls = ['http://renren.com/']
 
 
-    # # 重写 自定义开始请求
+    # 重写 自定义开始请求
     # def start_requests(self):
     #     url = 'http://www.renren.com/PLogin.do'
     #     data = {'email': '1365102044@qq.com',
@@ -24,8 +24,10 @@ class RenrenSpider(scrapy.Spider):
 
     # 测试 动态请求头
     def start_requests(self):
-        url = 'httpbin.org/user-agent'
-        request = scrapy.Request(url=url, callback=self.res_prase)
+        # url = 'httpbin.org/user-agent'
+        url = 'http://www.baidu.com'
+        request = scrapy.Request(url = url, callback = self.res_prase)
+        yield request
 
 
     def res_prase(self,response):
